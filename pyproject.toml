@@ -1,0 +1,52 @@
+[project]
+name = "ecoloop-ai"
+version = "0.1.0"
+description = "EcoLoop AI v2 monorepo"
+requires-python = ">=3.12,<3.13"
+dependencies = []
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["apps/backend", "packages/common", "packages/energyplus", "packages/mcp", "packages/ai"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["ecoloop_backend", "ecoloop_common", "ecoloop_energyplus", "ecoloop_mcp", "ecoloop_ai"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["apps/backend/src", "packages/common/src", "packages/energyplus/src", "packages/mcp/src", "packages/ai/src", "tests"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_configs = true
+mypy_path = ["apps/backend/src", "packages/common/src", "packages/energyplus/src", "packages/mcp/src", "packages/ai/src"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint]
+select = [
+    "B",
+    "C4",
+    "E",
+    "F",
+    "I",
+    "N",
+    "RUF",
+    "SIM",
+    "UP",
+]

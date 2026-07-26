@@ -1,0 +1,25 @@
+services:
+  backend:
+    image: ecoloop-backend:0.1.0
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/backend.Dockerfile
+    environment:
+      ECOLOOP_APP__ENVIRONMENT: development
+      ECOLOOP_API__HOST: 0.0.0.0
+      ECOLOOP_API__PORT: 8000
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "from urllib.request import urlopen; urlopen('http://127.0.0.1:8000/api/v1/health/ready').read()",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped

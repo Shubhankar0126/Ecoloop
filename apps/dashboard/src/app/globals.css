@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 40% 98%;
+  --foreground: 222 47% 11%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
+  --border: 214 32% 91%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --primary: 211 100% 48%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 33% 99%;
+  --secondary-foreground: 222 47% 11%;
+  --accent: 181 77% 38%;
+  --accent-foreground: 210 40% 98%;
+  --ring: 211 100% 48%;
+}
+
+.dark {
+  --background: 221 40% 8%;
+  --foreground: 210 40% 98%;
+  --muted: 223 33% 14%;
+  --muted-foreground: 215 20% 70%;
+  --border: 223 26% 22%;
+  --card: 223 35% 11%;
+  --card-foreground: 210 40% 98%;
+  --primary: 211 100% 61%;
+  --primary-foreground: 222 47% 11%;
+  --secondary: 223 28% 14%;
+  --secondary-foreground: 210 40% 98%;
+  --accent: 181 70% 41%;
+  --accent-foreground: 222 47% 11%;
+  --ring: 211 100% 61%;
+}
+
+* {
+  @apply border-border;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background font-body text-foreground antialiased;
+  background-image:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 30%),
+    radial-gradient(circle at top right, rgba(20, 184, 166, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.76), transparent 55%);
+  min-height: 100vh;
+}
+
+.dark body {
+  background-image:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.22), transparent 28%),
+    radial-gradient(circle at top right, rgba(20, 184, 166, 0.18), transparent 22%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.62), transparent 55%);
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.18);
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-3xl border border-white/50 bg-white/70 shadow-card backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/60;
+  }
+
+  .hero-border {
+    @apply border border-slate-200/70 dark:border-slate-800/70;
+  }
+
+  .grid-surface {
+    @apply bg-grid-pattern bg-[size:36px_36px];
+  }
+
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-primary;
+  }
+
+  .chart-surface {
+    @apply rounded-3xl border border-slate-200/70 bg-white/80 p-5 shadow-card backdrop-blur dark:border-slate-800 dark:bg-slate-950/60;
+  }
+}
